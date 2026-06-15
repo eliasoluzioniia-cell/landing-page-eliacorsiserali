@@ -1,0 +1,9 @@
+# File di sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Cartelle specifiche
+.gemini/
+.antigravity/
+.system_generated/

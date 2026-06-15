@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Elia Corsi Serali | Gestione Scolastica Intelligente</title>
+  <meta name="description" content="La piattaforma intelligente progettata specificamente per i corsi serali per adulti. Automatizza i PFI, gestisci le assenze e le deroghe e monitora il curricolo in tempo reale.">
+  <meta name="keywords" content="corsi serali, scuola adulti, gestione scolastica, PFI, prove di realta, ore nettuno, registro elettronico">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elia Corsi Serali | Gestione Scolastica Intelligente">
+  <meta property="og:description" content="Automatizzazione dei PFI, calcolo ore reali vs virtuali e gestione intelligente delle assenze per i corsi serali. Sviluppato per gli educatori degli adulti.">
+  <meta property="og:image" content="https://lh3.googleusercontent.com/aida-public/AB6AXuBViF7dZKvmqyuOzi2Hu5RdfkdXOZq03mXZZ4GIyXzhA1c3eZ6hrU0CYRhdT05p2p9eNljqGKYa73HXL8N5BB-IOuZ2SZf-HskVW3RLKhXNcfxheGrBJXd58LiDwhNKSBMj7cEux_7mLXRVQ14bdckkAvn5_jDNGFAuwuOxVHiYymdFQuR4mQF67h-ywusl65-pr3rSmsYZz1d4aCdGdn5dFrtXkiX9G7_hBDpJ49EzySCuXXwJxndh">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Elia Corsi Serali | Gestione Scolastica Intelligente">
+  <meta property="twitter:description" content="Automatizzazione dei PFI, calcolo ore reali vs virtuali e gestione intelligente delle assenze per i corsi serali. Sviluppato per gli educatori degli adulti.">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Custom CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-surface text-on-surface">
+
+  <!-- Hero WebGL Background -->
+  <div class="threejs-bg bg-background" id="hero-bg"></div>
+  
+  <!-- Standard WebGL Background -->
+  <div class="threejs-bg bg-background" id="standard-bg"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="header">
+    <nav class="container nav">
+      <a class="logo" href="#" id="nav-logo">Elia Corsi Serali</a>
+      <ul class="nav-links">
+        <li><a class="nav-link active" href="#hero">Corsi</a></li>
+        <li><a class="nav-link" href="#empatia">Perché Elia</a></li>
+        <li><a class="nav-link" href="#moduli">Moduli</a></li>
+        <li><a class="nav-link" href="#contatti">Contatti</a></li>
+      </ul>
+      <a href="demo.html" target="_blank" class="btn btn-primary" id="btn-nav-request">Accedi alla Demo Live</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1. Hero Section -->
+    <section class="container hero animate-on-scroll" id="hero">
+      <div class="hero-content">
+        <h1 class="text-display-lg">
+          Elia Corsi Serali: la suite gestionale per l'istruzione degli adulti.
+        </h1>
+        <p class="text-body-lg">
+          Nessuna logica aziendale astratta. Solo risposte concrete ai problemi reali dei corsi serali: automazione dei PFI, gestione reale delle assenze e calcoli ministeriali senza errori. Sviluppata da chi vive la scuola ogni giorno.
+        </p>
+        <div class="hero-actions">
+          <a href="demo.html" target="_blank" class="btn btn-primary btn-lg" id="btn-hero-demo">Accedi alla Demo Live</a>
+        </div>
+      </div>
+      <div class="hero-media float-screenshot" id="hero-video-container">
+        <img alt="Platform Preview" src="images/copertina_video.png">
+        <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+          <button class="play-button" aria-label="Riproduci video demo" id="btn-hero-play">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1; font-size: 36px;">play_arrow</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Empathy Section -->
+    <section class="section" id="empatia">
+      <div class="container empathy-grid animate-on-scroll">
+        <div class="empathy-media-wrapper">
+          <img alt="Schizzi di progettazione e appunti reali" class="empathy-image" src="images/empatia.jpg">
+        </div>
+        <div class="empathy-content">
+          <h2 class="text-headline-lg">Perché Elia Corsi Serali è diversa?</h2>
+          <blockquote class="text-body-lg">
+            "I software tradizionali sono stati pensati per uffici aziendali o scuole diurne standard. Il serale ha un'anima diversa: studenti lavoratori, percorsi personalizzati e una burocrazia che non perdona. Abbiamo ribaltato la prospettiva: non è la scuola che si adatta al software, ma il software che parla il linguaggio dell'insegnante del serale."
+          </blockquote>
+          <div class="empathy-divider"></div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- 4. Alternating Detail Sections -->
+    <section class="section" id="moduli">
+      <div class="container feature-detail-grid">
+        
+        <!-- Module 1: Registro Prove di Realtà -->
+        <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-info">
+            <span class="badge badge-primary text-label-md">Modulo Valutazione</span>
+            <h3 class="text-headline-md">Registro Prove di Realtà</h3>
+            <p class="text-body-lg">
+              Valutazione rapida e decentralizzata per i docenti. Inserisci i risultati delle prove di realtà in pochi clic, con calcolo automatico dei livelli di competenza basato sugli standard ministeriali.
+            </p>
+          </div>
+          <div class="feature-media">
+            <img alt="Registro Prove di Realtà" src="images/prove.jpg">
+          </div>
+        </div>
+
+        <!-- Module 2: Controllo presenze -->
+        <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-media">
+            <img alt="Comparazione Ore Fisiche vs Ore Virtuali" src="images/presenze.jpg">
+          </div>
+          <div class="feature-info">
+            <span class="badge badge-tertiary text-label-md">Algoritmo Anti-Errore</span>
+            <h3 class="text-headline-md">Controllo presenze</h3>
+            <p class="text-body-lg">
+              Il nostro sistema consente un migliore controllo delle presenze evidenziando le assenze giustificate con certificato e depura l'effetto duplicazione delle compresenze sulle % di lezioni erogate presente su Nettuno.
+            </p>
+          </div>
+        </div>
+
+        <!-- Module 3: Gestione assenze, orario e comunicazione -->
+        <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-info">
+            <span class="badge badge-primary text-label-md">Coordinamento Live</span>
+            <h3 class="text-headline-md">Gestione assenze, orario e comunicazione</h3>
+            <p class="text-body-lg">
+              Il nostro sistema avvicina l'ufficio personale alla gestione del serale migliorando la comunicazione e la gestione delle sostituzioni. Inoltre il nostro sistema elabora un orario settimanale pubblico per visualizzare le modifiche all'orario e include un sistema di chat interno per classe e di condivisione documenti.
+            </p>
+          </div>
+          <div class="feature-media">
+            <img alt="Registro Certificati Medici" src="images/assenze.jpg">
+          </div>
+        </div>
+
+        <!-- Module 4: Gestione PFI e Curricolo -->
+        <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-media">
+            <img alt="Dashboard Analisi Visiva Studente" src="images/curriculo.jpg">
+          </div>
+          <div class="feature-info">
+            <span class="badge badge-secondary text-label-md">PFI intelligente</span>
+            <h3 class="text-headline-md">Gestione PFI e Curricolo</h3>
+            <p class="text-body-lg">
+              Il nostro sistema permette il caricamento semplificato del Curricolo e la gestione e stampa dei PFI per gli studenti.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- 7. Final CTA -->
+    <section class="section" id="contatti">
+      <div class="container animate-on-scroll">
+        <div class="cta-box">
+          <div class="cta-bg-icon">
+            <span class="material-symbols-outlined">school</span>
+          </div>
+          <div class="cta-box-content">
+            <h2 class="text-display-lg">Porta Elia Corsi Serali nel tuo Istituto per l'Anno Scolastico 2026/2027</h2>
+            <p class="text-body-lg">
+              Selezione limitata di istituti per i test di Settembre. Offriamo pricing "Entry-Level" per le scuole che aderiscono alla fase di lancio.
+            </p>
+            <div class="cta-actions">
+              <a href="demo.html" target="_blank" class="btn btn-cta-white btn-lg" id="btn-cta-demo">Accedi alla Demo Live</a>
+            </div>
+            <p class="cta-contacts" style="font-size: 16px; color: var(--color-white); opacity: 0.95; margin-top: -8px;">
+              Contatti: <a href="mailto:elia.soluzioni.ia@gmail.com" style="color: var(--color-white); text-decoration: underline; font-weight: 600;">elia.soluzioni.ia@gmail.com</a> &nbsp;|&nbsp; <a href="mailto:fcancaro@gmail.com" style="color: var(--color-white); text-decoration: underline; font-weight: 600;">fcancaro@gmail.com</a> (docente progettista)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <h3 class="text-title-lg">Elia Corsi Serali</h3>
+        <p class="text-body-md">
+          © 2026 Elia Corsi Serali. Tutti i diritti riservati.<br>
+          Prodotto sviluppato da <a href="https://elia-soluzioni-ia.vercel.app/" target="_blank" style="color: inherit; text-decoration: underline;">Elia Soluzioni IA</a> (Fabio Cancaro, Lo Vecchio Tiziana).
+        </p>
+      </div>
+      <ul class="footer-links">
+        <li><a class="footer-link" href="#" id="link-privacy">Privacy Policy</a></li>
+        <li><a class="footer-link" href="#" id="link-terms">Termini di Servizio</a></li>
+        <li><a class="footer-link" href="#" id="link-cookies">Cookie Policy</a></li>
+        <li><a class="footer-link" href="#" id="link-support">Supporto</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- WebGL Constellation and Interactivity Scripts -->
+  <script>
+    // Three.js Constellation Factory
+    function createConstellation(containerId, params) {
+      const container = document.getElementById(containerId);
+      if (!container) return null;
+      
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+      camera.position.z = 120;
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const particleCount = params.particles || 100; 
+      const particles = new THREE.BufferGeometry();
+      const coords = new Float32Array(particleCount * 3);
+
+      for (let i = 0; i < particleCount; i++) {
+        coords[i * 3] = (Math.random() - 0.5) * 400;
+        coords[i * 3 + 1] = (Math.random() - 0.5) * 400;
+        coords[i * 3 + 2] = (Math.random() - 0.5) * 400;
+      }
+
+      particles.setAttribute('position', new THREE.BufferAttribute(coords, 3));
+
+      const pMaterial = new THREE.PointsMaterial({
+        color: 0x1a73e8,
+        size: params.pointSize || 3,
+        transparent: true,
+        opacity: params.pointOpacity || 0.6,
+        sizeAttenuation: true
+      });
+
+      const particleSystem = new THREE.Points(particles, pMaterial);
+      scene.add(particleSystem);
+
+      const lineMaterial = new THREE.LineBasicMaterial({
+        color: 0x1a73e8,
+        transparent: true,
+        opacity: params.lineOpacity || 0.15
+      });
+
+      const lineGeometry = new THREE.BufferGeometry();
+      const linePositions = new Float32Array(particleCount * (params.maxConnections || 4) * 6);
+      lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+      const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+      scene.add(lineMesh);
+
+      let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0, scrollY = 0;
+
+      const handleMove = (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+      };
+      window.addEventListener('mousemove', handleMove);
+      window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        targetX += (mouseX - targetX) * 0.02; // Rallentato l'inseguimento del mouse
+        targetY += (mouseY - targetY) * 0.02; // Rallentato l'inseguimento del mouse
+        
+        // Velocità di rotazione base e risposta al mouse ridotte di circa 10 volte
+        particleSystem.rotation.y += 0.00008 + targetX * 0.0003;
+        particleSystem.rotation.x += 0.00004 + targetY * 0.0003 + scrollY * 0.000005;
+        lineMesh.rotation.y = particleSystem.rotation.y;
+        lineMesh.rotation.x = particleSystem.rotation.x;
+
+        const pos = particles.attributes.position.array;
+        let lineIdx = 0;
+        for (let i = 0; i < particleCount; i++) {
+          let connections = 0;
+          for (let j = i + 1; j < particleCount && connections < params.maxConnections; j++) {
+            const dx = pos[i * 3] - pos[j * 3];
+            const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+            const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+            const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+            if (dist < params.connectDist) { 
+              linePositions[lineIdx++] = pos[i * 3];
+              linePositions[lineIdx++] = pos[i * 3 + 1];
+              linePositions[lineIdx++] = pos[i * 3 + 2];
+              linePositions[lineIdx++] = pos[j * 3];
+              linePositions[lineIdx++] = pos[j * 3 + 1];
+              linePositions[lineIdx++] = pos[j * 3 + 2];
+              connections++;
+            }
+          }
+        }
+        lineGeometry.attributes.position.needsUpdate = true;
+        lineGeometry.setDrawRange(0, lineIdx);
+        renderer.render(scene, camera);
+      }
+
+      window.addEventListener('resize', () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+
+      animate();
+      return { renderer, scene, camera };
+    }
+
+    // Initialize both backgrounds
+    document.addEventListener('DOMContentLoaded', () => {
+      createConstellation('hero-bg', {
+        particles: 250,
+        pointSize: 5,
+        pointOpacity: 1.0,
+        lineOpacity: 0.35,
+        maxConnections: 8,
+        connectDist: 65
+      });
+
+      createConstellation('standard-bg', {
+        particles: 100,
+        pointSize: 3,
+        pointOpacity: 0.5,
+        lineOpacity: 0.12,
+        maxConnections: 4,
+        connectDist: 80
+      });
+
+      const heroSection = document.getElementById('hero');
+      const heroBg = document.getElementById('hero-bg');
+      const standardBg = document.getElementById('standard-bg');
+
+      // Scroll Background Switcher
+      window.addEventListener('scroll', () => {
+        if (!heroSection) return;
+        const heroRect = heroSection.getBoundingClientRect();
+        if (heroRect.bottom < 100) {
+          heroBg.style.opacity = '0';
+          standardBg.style.opacity = '1';
+          standardBg.style.zIndex = '0';
+        } else {
+          heroBg.style.opacity = '1';
+          standardBg.style.opacity = '0';
+          standardBg.style.zIndex = '-1';
+        }
+      });
+
+      // Intersection Observer for scroll-triggered entrance animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // Dynamic navigation link highlight
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+
+      // YouTube Video Playback Handler
+      const playBtn = document.getElementById('btn-hero-play');
+      const videoContainer = document.getElementById('hero-video-container');
+      if (playBtn && videoContainer) {
+        playBtn.addEventListener('click', () => {
+          if (window.location.protocol === 'file:') {
+            // Fallback per protocollo file:// locale: apre il video direttamente su YouTube per prevenire l'Errore 153
+            window.open('https://youtu.be/HYBnnBT7394', '_blank');
+          } else {
+            videoContainer.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/HYBnnBT7394?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
+            videoContainer.classList.remove('float-screenshot'); // Stop floating animation during playback
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

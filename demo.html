@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accesso Demo Live | Elia Corsi Serali</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Link Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px var(--spacing-margin-mobile);
+      background: radial-gradient(circle at top right, rgba(26, 115, 232, 0.05), transparent 60%), var(--color-background);
+      position: relative;
+    }
+
+    .demo-card {
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(233, 233, 233, 0.8);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--medium-shadow);
+      max-width: 650px;
+      width: 100%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      z-index: 10;
+    }
+
+    .demo-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .demo-logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .info-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 576px) {
+      .info-boxes {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-box {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-outline-variant);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+    }
+
+    .info-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .info-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-on-surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .users-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .users-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-on-surface);
+      border-bottom: 1px solid var(--color-outline-variant);
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+    }
+
+    .user-row {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-outline-variant);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .user-row:hover {
+      border-color: var(--color-primary);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .user-email {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-on-surface);
+      font-family: monospace;
+    }
+
+    .user-role {
+      font-size: 12px;
+      color: var(--color-on-surface-variant);
+    }
+
+    .btn-copy {
+      background: none;
+      border: none;
+      color: var(--color-on-surface-variant);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-copy:hover {
+      background-color: var(--color-surface-container-low);
+      color: var(--color-primary);
+    }
+
+    .btn-action-wrapper {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-go {
+      width: 100%;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      gap: 8px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: var(--color-inverse-surface);
+      color: var(--color-inverse-on-surface);
+      padding: 12px 24px;
+      border-radius: var(--radius-default);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--medium-shadow);
+      z-index: 100;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating particles in background (simulated via CSS) -->
+  <div class="threejs-bg" style="background: radial-gradient(circle at 30% 70%, rgba(26, 115, 232, 0.03) 0%, transparent 50%);"></div>
+
+  <div class="demo-card">
+    <div class="demo-header">
+      <a class="demo-logo" href="index.html">Elia Corsi Serali</a>
+      <h1 class="text-headline-md">Credenziali per l'Accesso Demo</h1>
+      <p class="text-body-md">Utilizza i dati sottostanti per esplorare le funzionalità della piattaforma.</p>
+    </div>
+
+    <!-- Mechanical Code & Password Information -->
+    <div class="info-boxes">
+      <div class="info-box">
+        <span class="info-label">Codice Meccanografico</span>
+        <div class="info-value">
+          <span>ENIS000000</span>
+          <button class="btn-copy" onclick="copyText('ENIS000000', 'Codice Meccanografico copiato!')" title="Copia codice">
+            <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+          </button>
+        </div>
+      </div>
+      <div class="info-box">
+        <span class="info-label">Password per tutti gli utenti</span>
+        <div class="info-value">
+          <span>Utente@1</span>
+          <button class="btn-copy" onclick="copyText('Utente@1', 'Password copiata!')" title="Copia password">
+            <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Users Directory -->
+    <div class="users-list">
+      <h2 class="users-title">Seleziona un Profilo Utente</h2>
+      
+      <!-- User 1 -->
+      <div class="user-row">
+        <div class="user-details">
+          <span class="user-email">andrea.rinaldi@elia-demo.it</span>
+          <span class="user-role">Docente coordinatore (I periodo)</span>
+        </div>
+        <button class="btn-copy" onclick="copyText('andrea.rinaldi@elia-demo.it', 'Email Andrea Rinaldi copiata!')" title="Copia email">
+          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+        </button>
+      </div>
+
+      <!-- User 2 -->
+      <div class="user-row">
+        <div class="user-details">
+          <span class="user-email">cristina.fontana@elia-demo.it</span>
+          <span class="user-role">Docente standard (II periodo)</span>
+        </div>
+        <button class="btn-copy" onclick="copyText('cristina.fontana@elia-demo.it', 'Email Cristina Fontana copiata!')" title="Copia email">
+          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+        </button>
+      </div>
+
+      <!-- User 3 -->
+      <div class="user-row">
+        <div class="user-details">
+          <span class="user-email">roberto.moretti@elia-demo.it</span>
+          <span class="user-role">Utente tecnico (coordinatore III periodo)</span>
+        </div>
+        <button class="btn-copy" onclick="copyText('roberto.moretti@elia-demo.it', 'Email Roberto Moretti copiata!')" title="Copia email">
+          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+        </button>
+      </div>
+
+      <!-- User 4 -->
+      <div class="user-row">
+        <div class="user-details">
+          <span class="user-email">teresa.salvatore@elia-demo.it</span>
+          <span class="user-role">Docente responsabile serale / coordinatore</span>
+        </div>
+        <button class="btn-copy" onclick="copyText('teresa.salvatore@elia-demo.it', 'Email Teresa Salvatore copiata!')" title="Copia email">
+          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Action Link -->
+    <div class="btn-action-wrapper">
+      <a href="https://gestione-serale.vercel.app/login" target="_blank" class="btn btn-primary btn-go">
+        <span>Accedi all'Applicazione Live</span>
+        <span class="material-symbols-outlined" style="font-size: 20px;">open_in_new</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Toast Element -->
+  <div class="toast" id="toast-el">Copiato negli appunti!</div>
+
+  <script>
+    function copyText(text, successMessage) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMessage);
+      }).catch(err => {
+        console.error('Errore nella copia: ', err);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast-el');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>

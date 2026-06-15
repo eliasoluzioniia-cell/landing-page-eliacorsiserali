@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elia Corsi Serali | Gestione Scolastica Intelligente</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#adc7ff",
+                        "on-primary-fixed-variant": "#004493",
+                        "tertiary": "#9e4300",
+                        "surface-bright": "#faf9fd",
+                        "on-tertiary-fixed": "#341100",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#606364",
+                        "secondary": "#5c5f60",
+                        "inverse-on-surface": "#f1f0f4",
+                        "on-secondary-fixed-variant": "#444748",
+                        "outline-variant": "#c1c6d6",
+                        "tertiary-container": "#c55500",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#adc7ff",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "secondary-fixed-dim": "#c4c7c8",
+                        "surface-dim": "#dbd9dd",
+                        "on-background": "#1a1b1e",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f3f7",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#faf9fd",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001a41",
+                        "on-tertiary-container": "#0e0200",
+                        "tertiary-fixed": "#ffdbcb",
+                        "secondary-container": "#dee0e1",
+                        "outline": "#727785",
+                        "surface": "#faf9fd",
+                        "secondary-fixed": "#e1e3e4",
+                        "surface-variant": "#e3e2e6",
+                        "white": "#FFFFFF",
+                        "on-primary-container": "#ffffff",
+                        "primary": "#005bbf",
+                        "surface-alt": "#E9E9E9",
+                        "surface-container": "#efedf1",
+                        "surface-container-high": "#e9e7eb",
+                        "surface-tint": "#005bc0",
+                        "on-secondary-fixed": "#191c1d",
+                        "on-tertiary-fixed-variant": "#783100",
+                        "on-surface": "#1a1b1e",
+                        "on-surface-variant": "#414754",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e3e2e6",
+                        "inverse-surface": "#2f3033",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#1a73e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1200px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf9fd; }
+        .soft-shadow { box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .institutional-border { border: 1px solid rgba(233, 233, 233, 0.5); }
+        .card-radius { border-radius: 16px; }
+        
+        .threejs-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+        }
+
+        #hero-bg { z-index: 0; }
+        #standard-bg { z-index: -1; opacity: 0; }
+
+        header, footer { 
+            background-color: rgba(250, 249, 253, 0.7) !important; 
+            backdrop-filter: blur(12px); 
+            position: relative;
+            z-index: 20;
+        }
+        
+        main { position: relative; z-index: 10; }
+
+        section { 
+            background: transparent !important; 
+        }
+        
+        .bg-white-translucent { 
+            background-color: rgba(255, 255, 255, 0.6) !important; 
+            backdrop-filter: blur(8px); 
+        }
+
+        /* Floating Animation for Screenshots */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-screenshot {
+            animation: floating 5s ease-in-out infinite;
+        }
+
+        .experience-card {
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .experience-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            z-index: 50;
+        }
+
+        /* Composition Styles for screenshots */
+        .screenshot-stack {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .screenshot-item {
+            position: absolute;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Hero Background Container -->
+<div class="threejs-bg bg-background" id="hero-bg" style="z-index: 0; opacity: 1;"></div>
+<!-- Standard Background Container -->
+<div class="threejs-bg bg-background" id="standard-bg" style="z-index: -1; opacity: 0;"></div>
+<!-- TopNavBar -->
+<header class="border-b border-outline-variant shadow-sm sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary">Elia Corsi Serali</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Corsi</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Docenti</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Metodologia</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contatti</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-body-md text-body-md hover:opacity-90 transition-all font-medium">Richiedi Accesso</button>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-4 md:px-margin-desktop relative z-10">
+<!-- 1. Hero Section -->
+<section class="py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center bg-transparent" id="hero">
+<div class="space-y-6">
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight">
+                    Elia Corsi Serali: la suite gestionale per l'istruzione degli adulti.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Nessuna logica aziendale astratta. Solo risposte concrete ai problemi reali dei corsi serali: automazione dei PFI, gestione reale delle assenze e calcoli ministeriali senza errori. Sviluppata da chi vive la scuola ogni giorno.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-title-lg text-title-lg hover:shadow-lg transition-all">Richiedi Accesso Demo</button>
+</div>
+</div>
+<div class="relative bg-white-translucent shadow-xl card-radius overflow-hidden aspect-video flex items-center justify-center border-4 border-white float-screenshot">
+<img alt="Platform Preview" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBViF7dZKvmqyuOzi2Hu5RdfkdXOZq03mXZZ4GIyXzhA1c3eZ6hrU0CYRhdT05p2p9eNljqGKYa73HXL8N5BB-IOuZ2SZf-HskVW3RLKhXNcfxheGrBJXd58LiDwhNKSBMj7cEux_7mLXRVQ14bdckkAvn5_jDNGFAuwuOxVHiYymdFQuR4mQF67h-ywusl65-pr3rSmsYZz1d4aCdGdn5dFrtXkiX9G7_hBDpJ49EzySCuXXwJxndh"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform shadow-2xl">
+<span class="material-symbols-outlined text-4xl" style='font-variation-settings: "FILL" 1;'>play_arrow</span>
+</div>
+</div>
+</div>
+</section><section class="py-24 bg-transparent overflow-hidden" id="platform-constellation">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">L'Esperienza Elia</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Un'interfaccia pensata per chi vive la scuola ogni giorno, con dashboard intuitive e strumenti progettati per la massima efficienza.</p>
+</div>
+<div class="relative h-[800px] max-w-container-max mx-auto">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full">
+<div class="absolute top-[10%] left-[5%] w-[40%] z-30 float-screenshot transition-transform hover:scale-105 hover:z-50">
+<div class="bg-white p-2 rounded-lg shadow-2xl border border-outline-variant rotate-2">
+<img alt="Panoramica Generale" class="rounded shadow-sm w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlk0JaHYVsJH_p3zTfbHNnZIsvv170pGcFSuVa8Ca41dYm-E8SXbYkyIwxK4FlhkoPOi_4hRCSob3elPvBbt6IN8rhUFV82j-ap0s_9D33eeYZPpGqIYkPV50k2JWOtHCPVCQcjV3gZw-XQcNeNhTETjB9rQ0f5x3B8aEXzxAElj6Cb3R2TQQydS6CoUxpC2Pb0QOpPcKWKOZZtQhaL5NlyW2THYsPr4N-_Dq7Elxv8l0nctosODtgJorqKNtX7XWfQDh4O09HMds"/>
+</div>
+</div>
+<div class="absolute top-[5%] right-[10%] w-[35%] z-20 float-screenshot transition-transform hover:scale-105 hover:z-50" style="animation-delay: -1s;">
+<div class="bg-white p-2 rounded-lg shadow-2xl border border-outline-variant -rotate-2">
+<img alt="Gestione PFI" class="rounded shadow-sm w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszgZHjgyZyf2yy3CzhsQTQKJmHEUOqmSjTnIHVtL6HTehYFQUvolOTJrv_RN3mlyYZ4IngLN83-yyfLwC4cgyuEwSoSITecEY46X0zhZQOYcRswKuDpHwspN0giJdaSoZgNxUZ6bzHqjfaZcD0yoBTYwSgx3hLpoMJo2xYgNdVdSomrYl3ghsxiQGJY-3QNLgcbICQOjaiVovx9jscwgkThf8CuMj6o24RZbpaooadIRa1fbtb9SAs4aTb-VjK7dutbkP77lYca4"/>
+</div>
+</div>
+<div class="absolute top-[40%] left-[30%] w-[40%] z-40 float-screenshot transition-transform hover:scale-105 hover:z-50" style="animation-delay: -2s;">
+<div class="bg-white p-2 rounded-lg shadow-2xl border-4 border-white rotate-1">
+<img alt="Materie e Discipline" class="rounded shadow-sm w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFz08NPDYXaOU4_zsCvA-BrCH1jBr2fpCTHO_3kSFXBXJshcKm5gTZtzrocWN1zE4qwc4zabvWA_QGQy52NumvpoZllMZ-NP6Le_3awumAOsQcL0z_E3kpL1BEvpiT6OztA_Ro7rpgXzGOmdLc2LereuYCvxc8fqeTnt43dOh43Z9FQMMQyB7MyR0JPKyxOFX81S_oqRYNlNymjqzqEOlDF7qKQWjdAcFJ1KEW7HeWhlajx3bFmYLtoUV_pkaPpS4qB2zfqWIuKw4"/>
+</div>
+</div>
+<div class="absolute bottom-[10%] left-[10%] w-[35%] z-20 float-screenshot transition-transform hover:scale-105 hover:z-50" style="animation-delay: -3s;">
+<div class="bg-white p-2 rounded-lg shadow-2xl border border-outline-variant -rotate-3">
+<img alt="Gestione Curriculo" class="rounded shadow-sm w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ_k5aclDJQ30LamILt-Dk8qg-DoA_h9qefSP4kzxog7lmYbZI9O5HZG-pnVg2XVnY5HkL6RWbKScdFC8ceGXtUukr2x5-x8gn2ZFtmxEg3r1OlF6nQPjZ4YTKIvpfDjcgBAgRxZkC5HYjaMx1ZCjWmOPM4hvYco4yG9nUsZO1GItwwO8Q3FjoKOHFhAIPMFB2YMBDEDWEbDk4R8B6uzMzaFAkQKK9IPccgNo2PKx4WttToqr_oshDchNw_HpGGzPAGL5fKvj56nc"/>
+</div>
+</div>
+<div class="absolute bottom-[15%] right-[5%] w-[40%] z-30 float-screenshot transition-transform hover:scale-105 hover:z-50" style="animation-delay: -4s;">
+<div class="bg-white p-2 rounded-lg shadow-2xl border border-outline-variant rotate-2">
+<img alt="Area Stampe" class="rounded shadow-sm w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSMv1VTLFKjf_J_d1sgZyJqEESb_tvDGs-7jvqsMJRTc_jVDsXKj3aE2arFuVZyemIAnSQQ7h1X7f-R_uPZ3YmWgysdEGmIPtrTldU-ofdVGdN27XFoFTkEth8TgQPSBEc3CcyRnbWgcOXmzjqY4OPHX7YMuXZc7HluivnSJgWsAKmhxmKPMiVEPA5J2hI5p9yr1FZ7f7qKs1qx_ZipMUOWPN3RIwBXR8XE5Bj0N4jHU_K_Y1tW8_HR141Zn2jJT2MBeApnj4_8eo"/>
+</div>
+</div>
+<div class="absolute top-[30%] right-[20%] w-[30%] z-10 float-screenshot grayscale opacity-80 transition-all hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:z-50" style="animation-delay: -1.5s;">
+<div class="bg-white p-2 rounded-lg shadow-xl border border-outline-variant -rotate-6">
+<img alt="Gestione Assenze" class="rounded shadow-sm w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ho3uI_FiDgDow2zlWaPA8C_9a7avOge1Gp0ZsADAo0R-vMA4HxL6W_pPwBbJYyWcyW-eavqoSIEZXQJ-oLNgxk8rBRm22wiMmEi-hSm0I3T1hGX5JWEdvmk4gW_eRnQqXk1GsrUfjJtVp146XUWkv2z9FSZqDHSxQ8hPR_1-WruqHIncaBzJ3uAj2odWJXRRt6VEdRutTRE6i0kvn90WHrP5bGgnXjdHjZXxWsbGCTPIPQR2Mojt_z_0rNTBl-NyL90Prrya0AM"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Interactive Experience Section -->
+<section class="py-24 bg-transparent" id="platform-experience">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">L'Efficienza in Ogni Modulo</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Un ecosistema digitale dove i dati ministeriali e la gestione quotidiana si fondono in un'unica interfaccia fluida.</p>
+</div>
+<!-- STAGGERED LAYOUT START -->
+<div class="space-y-32">
+<!-- 1. Controllo Presenze (Text Left / Image Right) -->
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-6 order-1">
+<div class="bg-primary/10 text-primary px-4 py-1 rounded-full w-fit font-label-md text-label-md">REAL-TIME TRACKING</div>
+<h3 class="font-headline-md text-headline-md">Controllo Presenze</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Calcolo cronologico con depurazione compresenze e verifica automatica PFI per un monitoraggio preciso.</p>
+</div>
+<div class="order-2 float-screenshot relative h-[400px]">
+<img alt="Controllo Presenze 1" class="absolute top-0 right-0 w-[80%] rounded-lg shadow-xl z-10 border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ePMBl_Qekvj_drmU11dxMG0b4NDJK0HqEaIZZqo87BR3zG-CE38isCiif_3i9gEXVf56Y3xRBHQJ0saiBswdcQmzvsc10vkt4gQ3exv2pdHOCy0sk6Ks61hODF8oMMdJg6FBwVYudaF3i_MEGUt3b518oscfW6GBJkl-fAfTfFtwrHyY22xANOaVt0AuAVEFYQE2fpXjyQinb-WtpivBYlm1XFxEVunHHGJ5WSX4H8RtmSuhcnKQY0VBcjKjyCiuSpmAD7OacPA"/>
+<img alt="Controllo Presenze 2" class="absolute top-10 right-10 w-[80%] rounded-lg shadow-xl z-20 border border-white/20 translate-x-4 translate-y-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ePMBl_Qekvj_drmU11dxMG0b4NDJK0HqEaIZZqo87BR3zG-CE38isCiif_3i9gEXVf56Y3xRBHQJ0saiBswdcQmzvsc10vkt4gQ3exv2pdHOCy0sk6Ks61hODF8oMMdJg6FBwVYudaF3i_MEGUt3b518oscfW6GBJkl-fAfTfFtwrHyY22xANOaVt0AuAVEFYQE2fpXjyQinb-WtpivBYlm1XFxEVunHHGJ5WSX4H8RtmSuhcnKQY0VBcjKjyCiuSpmAD7OacPA"/>
+<img alt="Controllo Presenze 3" class="absolute top-20 right-20 w-[80%] rounded-lg shadow-xl z-30 border-4 border-white translate-x-8 translate-y-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ePMBl_Qekvj_drmU11dxMG0b4NDJK0HqEaIZZqo87BR3zG-CE38isCiif_3i9gEXVf56Y3xRBHQJ0saiBswdcQmzvsc10vkt4gQ3exv2pdHOCy0sk6Ks61hODF8oMMdJg6FBwVYudaF3i_MEGUt3b518oscfW6GBJkl-fAfTfFtwrHyY22xANOaVt0AuAVEFYQE2fpXjyQinb-WtpivBYlm1XFxEVunHHGJ5WSX4H8RtmSuhcnKQY0VBcjKjyCiuSpmAD7OacPA"/>
+</div>
+</div>
+<!-- 2. Registro Prove di Realtà (Image Left / Text Right) -->
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 float-screenshot relative h-[400px]">
+<img alt="Registro Prove 1" class="absolute top-0 left-0 w-[80%] rounded-lg shadow-xl z-10 border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3E2w3QrEdVTYNiLJzKk6MxXJs0UEpX_nvuaVjYOJ-LMhGmzx0xdfBe0sYrbK1ims_xYFxm2Vq5l3r8M6Pwpdn_U5-KfsZJRCqYy4C5VPlLflovU2eNcD4bhhbWrImBx2wCMGrlA1r5IEfzbVHau_u5DxMD4mcce7WVlG8heqJ6Z_SM1tZtRUWSpx49XlIQGuevduoNTT5jITODYKzYUbjx2dY_ejY_eAcbvmkNFZGj3CAvuianHLcrOR4BluyU-O6-sRN8mg9zB4"/>
+<img alt="Registro Prove 2" class="absolute top-10 left-10 w-[80%] rounded-lg shadow-xl z-20 border border-white/20 -translate-x-4 translate-y-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3E2w3QrEdVTYNiLJzKk6MxXJs0UEpX_nvuaVjYOJ-LMhGmzx0xdfBe0sYrbK1ims_xYFxm2Vq5l3r8M6Pwpdn_U5-KfsZJRCqYy4C5VPlLflovU2eNcD4bhhbWrImBx2wCMGrlA1r5IEfzbVHau_u5DxMD4mcce7WVlG8heqJ6Z_SM1tZtRUWSpx49XlIQGuevduoNTT5jITODYKzYUbjx2dY_ejY_eAcbvmkNFZGj3CAvuianHLcrOR4BluyU-O6-sRN8mg9zB4"/>
+<img alt="Registro Prove 3" class="absolute top-20 left-20 w-[80%] rounded-lg shadow-xl z-30 border-4 border-white -translate-x-8 translate-y-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3E2w3QrEdVTYNiLJzKk6MxXJs0UEpX_nvuaVjYOJ-LMhGmzx0xdfBe0sYrbK1ims_xYFxm2Vq5l3r8M6Pwpdn_U5-KfsZJRCqYy4C5VPlLflovU2eNcD4bhhbWrImBx2wCMGrlA1r5IEfzbVHau_u5DxMD4mcce7WVlG8heqJ6Z_SM1tZtRUWSpx49XlIQGuevduoNTT5jITODYKzYUbjx2dY_ejY_eAcbvmkNFZGj3CAvuianHLcrOR4BluyU-O6-sRN8mg9zB4"/>
+</div>
+<div class="space-y-6 order-1 md:order-2">
+<div class="bg-tertiary/10 text-tertiary px-4 py-1 rounded-full w-fit font-label-md text-label-md">VALUTAZIONE COMPETENZE</div>
+<h3 class="font-headline-md text-headline-md">Registro Prove di Realtà</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Valutazione per competenze integrata secondo gli standard ministeriali, con calcolo automatico dei livelli.</p>
+</div>
+</div>
+<!-- 3. Gestione Assenze & Sostituzioni (Text Left / Image Right) -->
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-6 order-1">
+<div class="bg-primary/10 text-primary px-4 py-1 rounded-full w-fit font-label-md text-label-md">COORDINAMENTO LIVE</div>
+<h3 class="font-headline-md text-headline-md">Gestione Assenze &amp; Sostituzioni</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Coordinamento in tempo reale tra Ufficio Personale e docenti, con feed live delle sostituzioni.</p>
+</div>
+<div class="order-2 float-screenshot relative h-[400px]">
+<img alt="Gestione Assenze 1" class="absolute top-0 right-0 w-[80%] rounded-lg shadow-xl z-10 border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLtKUvvfVqBpToXzF0HxqLxzWx1zBGOdf2phUAxuLauzPFoEoToJaSt9nD93TxD0SBMabtAoOFdUtwF9DWUi3AbiDdcBYNjz5WHWzbDxa4Musbou_Jbzdorg3jGbV2Ua2v5FwIDkV7SUDOtYAN5C7e0m_ewNap_viGwfBsd_llHgs6lGCSxgf1zkEjF-GjdB5PUCOUZNu9XdycL-qfhOD-gDLBtchm14P1ODsJhRvZ7w6Dy26RcoLPyKm_AES8K9jCBff-mEy-B4"/>
+<img alt="Gestione Assenze 2" class="absolute top-10 right-10 w-[80%] rounded-lg shadow-xl z-20 border border-white/20 translate-x-4 translate-y-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLtKUvvfVqBpToXzF0HxqLxzWx1zBGOdf2phUAxuLauzPFoEoToJaSt9nD93TxD0SBMabtAoOFdUtwF9DWUi3AbiDdcBYNjz5WHWzbDxa4Musbou_Jbzdorg3jGbV2Ua2v5FwIDkV7SUDOtYAN5C7e0m_ewNap_viGwfBsd_llHgs6lGCSxgf1zkEjF-GjdB5PUCOUZNu9XdycL-qfhOD-gDLBtchm14P1ODsJhRvZ7w6Dy26RcoLPyKm_AES8K9jCBff-mEy-B4"/>
+<img alt="Gestione Assenze 3" class="absolute top-20 right-20 w-[80%] rounded-lg shadow-xl z-30 border-4 border-white translate-x-8 translate-y-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLtKUvvfVqBpToXzF0HxqLxzWx1zBGOdf2phUAxuLauzPFoEoToJaSt9nD93TxD0SBMabtAoOFdUtwF9DWUi3AbiDdcBYNjz5WHWzbDxa4Musbou_Jbzdorg3jGbV2Ua2v5FwIDkV7SUDOtYAN5C7e0m_ewNap_viGwfBsd_llHgs6lGCSxgf1zkEjF-GjdB5PUCOUZNu9XdycL-qfhOD-gDLBtchm14P1ODsJhRvZ7w6Dy26RcoLPyKm_AES8K9jCBff-mEy-B4"/>
+</div>
+</div>
+<!-- 4. Import Scrutini & Certificazione (Image Left / Text Right) -->
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 float-screenshot relative h-[400px]">
+<img alt="Import Scrutini 1" class="absolute top-0 left-0 w-[80%] rounded-lg shadow-xl z-10 border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzundVrFmfOiNpHxzIRFCdRHDJL6Y8v_kuBHiYD8dJSJJCPnu5P_ZnoWP757wYZpLGjqQLzfEW8Plg3smf6h3USFui2_VD0n0VPuVgC_Yu6XTVH4K3DIxai3ozs5Qfh_bg8sNjdGsxHVZ_NZnfqPu21eI1xfTAkXxQhJe9MQM1hQasihqRl1pyPYe8Z4SR6DQ5Ijw40Fqf7QHDriFHtgcO0AYOQkFaVXShBLHiTwvYZYM2SOaaQXuTwZVNQ1MLcVWBGbhSqujMxLc"/>
+<img alt="Import Scrutini 2" class="absolute top-10 left-10 w-[80%] rounded-lg shadow-xl z-20 border border-white/20 -translate-x-4 translate-y-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzundVrFmfOiNpHxzIRFCdRHDJL6Y8v_kuBHiYD8dJSJJCPnu5P_ZnoWP757wYZpLGjqQLzfEW8Plg3smf6h3USFui2_VD0n0VPuVgC_Yu6XTVH4K3DIxai3ozs5Qfh_bg8sNjdGsxHVZ_NZnfqPu21eI1xfTAkXxQhJe9MQM1hQasihqRl1pyPYe8Z4SR6DQ5Ijw40Fqf7QHDriFHtgcO0AYOQkFaVXShBLHiTwvYZYM2SOaaQXuTwZVNQ1MLcVWBGbhSqujMxLc"/>
+<img alt="Import Scrutini 3" class="absolute top-20 left-20 w-[80%] rounded-lg shadow-xl z-30 border-4 border-white -translate-x-8 translate-y-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzundVrFmfOiNpHxzIRFCdRHDJL6Y8v_kuBHiYD8dJSJJCPnu5P_ZnoWP757wYZpLGjqQLzfEW8Plg3smf6h3USFui2_VD0n0VPuVgC_Yu6XTVH4K3DIxai3ozs5Qfh_bg8sNjdGsxHVZ_NZnfqPu21eI1xfTAkXxQhJe9MQM1hQasihqRl1pyPYe8Z4SR6DQ5Ijw40Fqf7QHDriFHtgcO0AYOQkFaVXShBLHiTwvYZYM2SOaaQXuTwZVNQ1MLcVWBGbhSqujMxLc"/>
+</div>
+<div class="space-y-6 order-1 md:order-2">
+<div class="bg-secondary-container text-secondary px-4 py-1 rounded-full w-fit font-label-md text-label-md">AUTOMAZIONE BUROCRATICA</div>
+<h3 class="font-headline-md text-headline-md">Import Scrutini &amp; Certificazione</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Importazione intelligente dei voti da file esterni e generazione automatica della certificazione delle competenze.</p>
+</div>
+</div>
+<!-- 5. Gestione Curriculo & PFI (Text Left / Image Right) -->
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-6 order-1">
+<div class="bg-primary/10 text-primary px-4 py-1 rounded-full w-fit font-label-md text-label-md">PFI INTELLIGENTE</div>
+<h3 class="font-headline-md text-headline-md">Gestione Curriculo &amp; PFI</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Personalizzazione completa del percorso formativo per ogni studente, con tracciamento delle ore erogate per asse.</p>
+</div>
+<div class="order-2 float-screenshot relative h-[400px]">
+<img alt="Gestione Curriculo 1" class="absolute top-0 right-0 w-[80%] rounded-lg shadow-xl z-10 border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7WLAh9FmEAL4L56GzvnOAQZ8yaW4aN0GVsCoVlRpuDWO0UfQcHk1JgvdZbap4s1s5FrFfN_NT1JcissteMfMTPf0ghSDnPaZrV1YVowPydBu7SioX0F3ihux3ekHARZ_BU6obebsmxoS_kp_2puV-zt0jZ2-agfydh8NTcRF2YkEWlhQZNPMYdFu7m5EFGkPxtEHQYFG9tsJw382cjoCZTZX4pNjiRMv6ugHwJX502XFcLichTJp94UX1Ov3zUvG5F3Npt4Uo9Ec"/>
+<img alt="Gestione Curriculo 2" class="absolute top-10 right-10 w-[80%] rounded-lg shadow-xl z-20 border border-white/20 translate-x-4 translate-y-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7WLAh9FmEAL4L56GzvnOAQZ8yaW4aN0GVsCoVlRpuDWO0UfQcHk1JgvdZbap4s1s5FrFfN_NT1JcissteMfMTPf0ghSDnPaZrV1YVowPydBu7SioX0F3ihux3ekHARZ_BU6obebsmxoS_kp_2puV-zt0jZ2-agfydh8NTcRF2YkEWlhQZNPMYdFu7m5EFGkPxtEHQYFG9tsJw382cjoCZTZX4pNjiRMv6ugHwJX502XFcLichTJp94UX1Ov3zUvG5F3Npt4Uo9Ec"/>
+<img alt="Gestione Curriculo 3" class="absolute top-20 right-20 w-[80%] rounded-lg shadow-xl z-30 border-4 border-white translate-x-8 translate-y-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7WLAh9FmEAL4L56GzvnOAQZ8yaW4aN0GVsCoVlRpuDWO0UfQcHk1JgvdZbap4s1s5FrFfN_NT1JcissteMfMTPf0ghSDnPaZrV1YVowPydBu7SioX0F3ihux3ekHARZ_BU6obebsmxoS_kp_2puV-zt0jZ2-agfydh8NTcRF2YkEWlhQZNPMYdFu7m5EFGkPxtEHQYFG9tsJw382cjoCZTZX4pNjiRMv6ugHwJX502XFcLichTJp94UX1Ov3zUvG5F3Npt4Uo9Ec"/>
+</div>
+</div>
+<!-- 6. Area Stampe (Image Left / Text Right) -->
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 float-screenshot relative h-[400px]">
+<img alt="Area Stampe 1" class="absolute top-0 left-0 w-[80%] rounded-lg shadow-xl z-10 border border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9-Yo4kbjjiaKaRGAyw45CluqS5E2fjAJfkxXwpPRDj-qmcPkoyjEytcH182_nZFqtyBfLePqgjfTq7z7cfMK_EV3CirE6tJZvqkqGoKeR0UtOWJnc1eHD4PVggDM8OpIdZdry_DC8TITt3yZLMLddtvEkZGyT0am5pxMBjkseVp5OtEcgMXZN7A8syRv_6-4E1VEOZsMolmd7KMI9HuDWb5aRwY6M-LOJw7rPs6NhEETnEa1FiYH2SyjXlSLDkieP-gnmLzaFcUw"/>
+<img alt="Area Stampe 2" class="absolute top-10 left-10 w-[80%] rounded-lg shadow-xl z-20 border border-white/20 -translate-x-4 translate-y-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9-Yo4kbjjiaKaRGAyw45CluqS5E2fjAJfkxXwpPRDj-qmcPkoyjEytcH182_nZFqtyBfLePqgjfTq7z7cfMK_EV3CirE6tJZvqkqGoKeR0UtOWJnc1eHD4PVggDM8OpIdZdry_DC8TITt3yZLMLddtvEkZGyT0am5pxMBjkseVp5OtEcgMXZN7A8syRv_6-4E1VEOZsMolmd7KMI9HuDWb5aRwY6M-LOJw7rPs6NhEETnEa1FiYH2SyjXlSLDkieP-gnmLzaFcUw"/>
+<img alt="Area Stampe 3" class="absolute top-20 left-20 w-[80%] rounded-lg shadow-xl z-30 border-4 border-white -translate-x-8 translate-y-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9-Yo4kbjjiaKaRGAyw45CluqS5E2fjAJfkxXwpPRDj-qmcPkoyjEytcH182_nZFqtyBfLePqgjfTq7z7cfMK_EV3CirE6tJZvqkqGoKeR0UtOWJnc1eHD4PVggDM8OpIdZdry_DC8TITt3yZLMLddtvEkZGyT0am5pxMBjkseVp5OtEcgMXZN7A8syRv_6-4E1VEOZsMolmd7KMI9HuDWb5aRwY6M-LOJw7rPs6NhEETnEa1FiYH2SyjXlSLDkieP-gnmLzaFcUw"/>
+</div>
+<div class="space-y-6 order-1 md:order-2">
+<div class="bg-primary/10 text-primary px-4 py-1 rounded-full w-fit font-label-md text-label-md">REPORTISTICA</div>
+<h3 class="font-headline-md text-headline-md">Area Stampe</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Generazione rapida e professionale di tutta la documentazione ufficiale: Tabelloni, PFI e Schede Valutazione.</p>
+</div>
+</div>
+</div>
+<!-- STAGGERED LAYOUT END -->
+</section>
+<!-- 3. Sezione Empatia -->
+<section class="py-20 border-t border-outline-variant bg-transparent">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1">
+<div class="bg-white-translucent p-4 card-radius shadow-sm institutional-border transform -rotate-2">
+<img alt="Design sketches" class="w-full grayscale h-96 object-cover rounded-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDipzHNxAjL_QIljhPCRvXoOIqBJ_MZeqqwgqEW5MfBZev55MlmqkN91f6rWLYDeeGFUhfrCQrOrKoLRkkhSwKiKh17GmZjR8QFk7gbfCicLj_fvbxjsnYGlvAR8EEpxEYYn6gt2Cuu-eDGVAr614WZw53J6GxKIkE_pRdixCty3uvI6Px-O-WNK3NbRk0CcyTcNT0hYezwR5mx-Ke9bYC7buMICUTaT_Id4ESyPiJURnYlfiN18i0VaFD7XD-uOiSy_A"/>
+</div>
+</div>
+<div class="order-1 md:order-2 space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Perché Elia Corsi Serali è diversa?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant italic">
+                        "I software tradizionali sono stati pensati per uffici aziendali o scuole diurne standard. Il serale ha un'anima diversa: studenti lavoratori, percorsi personalizzati e una burocrazia che non perdona. Abbiamo ribaltato la prospettiva: non è la scuola che si adatta al software, ma il software che parla il linguaggio dell'insegnante del serale."
+                    </p>
+<div class="h-1 w-20 bg-primary"></div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-24 bg-transparent">
+<div class="bg-primary text-on-primary card-radius p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-9xl" style='font-variation-settings: "wght" 700;'>school</span>
+</div>
+<div class="relative z-10 max-w-3xl mx-auto space-y-8">
+<h2 class="font-display-lg text-display-lg leading-tight">Porta Elia Corsi Serali nel tuo Istituto per l'Anno Scolastico 2026/2027</h2>
+<p class="font-body-lg text-body-lg opacity-90">
+                        Selezione limitata di istituti per i test di Settembre. Offriamo pricing "Entry-Level" per le scuole che aderiscono alla fase di lancio.
+                    </p>
+<div class="flex flex-wrap justify-center gap-6 pt-6">
+<button class="bg-white text-primary px-10 py-5 rounded-lg font-headline-md text-headline-md font-bold shadow-xl hover:scale-105 transition-transform">Accedi alla Demo Live</button>
+<button class="bg-primary-container/20 border border-white/30 text-white px-10 py-5 rounded-lg font-headline-md text-headline-md font-bold backdrop-blur-sm hover:bg-white/10 transition-colors">Contatta il Team</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-container-highest border-t border-outline-variant">
+<div class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-base max-w-container-max mx-auto">
+<div class="space-y-2">
+<div class="font-title-lg text-title-lg font-bold text-on-surface">Elia Corsi Serali</div>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Elia Corsi Serali. Tutti i diritti riservati.<br/>Prodotto sviluppato da Elia Soluzioni IA (Fabio Cancaro, Lo Vecchio Tiziana).</p>
+</div>
+<div class="flex gap-gutter">
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline hover:text-primary transition-colors duration-200" href="#">Termini di Servizio</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline hover:text-primary transition-colors duration-200" href="#">Cookie Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:underline hover:text-primary transition-colors duration-200" href="#">Supporto</a>
+</div>
+</div>
+</footer>
+<script>
+        // Three.js Utility Factory
+        function createConstellation(containerId, params) {
+            const container = document.getElementById(containerId);
+            if (!container) return null;
+            
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            camera.position.z = 120;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            const particleCount = params.particles || 100; 
+            const particles = new THREE.BufferGeometry();
+            const coords = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount; i++) {
+                coords[i * 3] = (Math.random() - 0.5) * 400;
+                coords[i * 3 + 1] = (Math.random() - 0.5) * 400;
+                coords[i * 3 + 2] = (Math.random() - 0.5) * 400;
+            }
+
+            particles.setAttribute('position', new THREE.BufferAttribute(coords, 3));
+
+            const pMaterial = new THREE.PointsMaterial({
+                color: 0x1a73e8,
+                size: params.pointSize || 3,
+                transparent: true,
+                opacity: params.pointOpacity || 0.6,
+                sizeAttenuation: true
+            });
+
+            const particleSystem = new THREE.Points(particles, pMaterial);
+            scene.add(particleSystem);
+
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x1a73e8,
+                transparent: true,
+                opacity: params.lineOpacity || 0.15
+            });
+
+            const lineGeometry = new THREE.BufferGeometry();
+            const linePositions = new Float32Array(particleCount * (params.maxConnections || 4) * 6);
+            lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+            const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lineMesh);
+
+            let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0, scrollY = 0;
+
+            const handleMove = (e) => {
+                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+            };
+            window.addEventListener('mousemove', handleMove);
+            window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                targetX += (mouseX - targetX) * 0.05;
+                targetY += (mouseY - targetY) * 0.05;
+                
+                particleSystem.rotation.y += 0.0005 + targetX * 0.002;
+                particleSystem.rotation.x += 0.0002 + targetY * 0.002 + scrollY * 0.00005;
+                lineMesh.rotation.y = particleSystem.rotation.y;
+                lineMesh.rotation.x = particleSystem.rotation.x;
+
+                const pos = particles.attributes.position.array;
+                let lineIdx = 0;
+                for (let i = 0; i < particleCount; i++) {
+                    let connections = 0;
+                    for (let j = i + 1; j < particleCount && connections < params.maxConnections; j++) {
+                        const dx = pos[i * 3] - pos[j * 3];
+                        const dy = pos[i * 3 + 1] - pos[j * 3 + 1];
+                        const dz = pos[i * 3 + 2] - pos[j * 3 + 2];
+                        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                        if (dist < params.connectDist) { 
+                            linePositions[lineIdx++] = pos[i * 3];
+                            linePositions[lineIdx++] = pos[i * 3 + 1];
+                            linePositions[lineIdx++] = pos[i * 3 + 2];
+                            linePositions[lineIdx++] = pos[j * 3];
+                            linePositions[lineIdx++] = pos[j * 3 + 1];
+                            linePositions[lineIdx++] = pos[j * 3 + 2];
+                            connections++;
+                        }
+                    }
+                }
+                lineGeometry.attributes.position.needsUpdate = true;
+                lineGeometry.setDrawRange(0, lineIdx);
+                renderer.render(scene, camera);
+            }
+
+            window.addEventListener('resize', () => {
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+                renderer.setSize(w, h);
+            });
+
+            animate();
+            return { renderer, scene, camera };
+        }
+
+        // Initialize both backgrounds
+        document.addEventListener('DOMContentLoaded', () => {
+            createConstellation('hero-bg', {
+                particles: 250,
+                pointSize: 5,
+                pointOpacity: 1.0,
+                lineOpacity: 0.35,
+                maxConnections: 8,
+                connectDist: 65
+            });
+
+            createConstellation('standard-bg', {
+                particles: 100,
+                pointSize: 3,
+                pointOpacity: 0.5,
+                lineOpacity: 0.12,
+                maxConnections: 4,
+                connectDist: 80
+            });
+
+            const heroSection = document.getElementById('hero');
+            const heroBg = document.getElementById('hero-bg');
+            const standardBg = document.getElementById('standard-bg');
+
+            window.addEventListener('scroll', () => {
+                if (!heroSection) return;
+                const heroRect = heroSection.getBoundingClientRect();
+                if (heroRect.bottom < 100) {
+                    heroBg.style.opacity = '0';
+                    standardBg.style.opacity = '1';
+                    standardBg.style.zIndex = '0';
+                } else {
+                    heroBg.style.opacity = '1';
+                    standardBg.style.opacity = '0';
+                    standardBg.style.zIndex = '-1';
+                }
+            });
+        });
+
+        // Observer for Scroll Fade In
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section, .grid').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body></html>
