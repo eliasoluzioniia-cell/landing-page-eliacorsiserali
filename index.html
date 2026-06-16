@@ -82,7 +82,7 @@
     <section class="section" id="empatia">
       <div class="container empathy-grid animate-on-scroll">
         <div class="empathy-media-wrapper">
-          <img alt="Schizzi di progettazione e appunti reali" class="empathy-image" src="images/empatia.jpg">
+          <img alt="Schizzi di progettazione e appunti reali" class="empathy-image zoomable-image" src="images/empatia.jpg" onclick="openLightbox(this)">
         </div>
         <div class="empathy-content">
           <h2 class="text-headline-lg">Perché Elia Corsi Serali è diversa?</h2>
@@ -106,18 +106,18 @@
             <span class="badge badge-primary text-label-md">Modulo Valutazione</span>
             <h3 class="text-headline-md">Registro Prove di Realtà</h3>
             <p class="text-body-lg">
-              Valutazione rapida e decentralizzata per i docenti. Inserisci i risultati delle prove di realtà in pochi clic, con calcolo automatico dei livelli di competenza basato sugli standard ministeriali.
+              Valutazione rapida e decentralizzata per i docenti. Inserisci i risultati delle prove di realtà in pochi clic. Stampa del tabellone prove di realtà ed generazione automatica della scheda valutazione studente per le prove di realtà.
             </p>
           </div>
           <div class="feature-media">
-            <img alt="Registro Prove di Realtà" src="images/prove.jpg">
+            <img alt="Registro Prove di Realtà" class="zoomable-image" src="images/prove.jpg" onclick="openLightbox(this)">
           </div>
         </div>
 
         <!-- Module 2: Controllo presenze -->
         <div class="feature-detail-item animate-on-scroll">
           <div class="feature-media">
-            <img alt="Comparazione Ore Fisiche vs Ore Virtuali" src="images/presenze.jpg">
+            <img alt="Comparazione Ore Fisiche vs Ore Virtuali" class="zoomable-image" src="images/presenze.jpg" onclick="openLightbox(this)">
           </div>
           <div class="feature-info">
             <span class="badge badge-tertiary text-label-md">Algoritmo Anti-Errore</span>
@@ -138,14 +138,14 @@
             </p>
           </div>
           <div class="feature-media">
-            <img alt="Registro Certificati Medici" src="images/assenze.jpg">
+            <img alt="Registro Certificati Medici" class="zoomable-image" src="images/assenze.jpg" onclick="openLightbox(this)">
           </div>
         </div>
 
         <!-- Module 4: Gestione PFI e Curricolo -->
         <div class="feature-detail-item animate-on-scroll">
           <div class="feature-media">
-            <img alt="Dashboard Analisi Visiva Studente" src="images/curriculo.jpg">
+            <img alt="Dashboard Analisi Visiva Studente" class="zoomable-image" src="images/curriculo.jpg" onclick="openLightbox(this)">
           </div>
           <div class="feature-info">
             <span class="badge badge-secondary text-label-md">PFI intelligente</span>
@@ -153,6 +153,20 @@
             <p class="text-body-lg">
               Il nostro sistema permette il caricamento semplificato del Curricolo e la gestione e stampa dei PFI per gli studenti.
             </p>
+          </div>
+        </div>
+
+        <!-- Module 5: Importazione voti scrutinio e certificazione finale competenze -->
+        <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-info">
+            <span class="badge badge-tertiary text-label-md">Scrutini e Certificati</span>
+            <h3 class="text-headline-md">Importazione voti scrutinio e certificazione finale competenze</h3>
+            <p class="text-body-lg">
+              Il nostro sistema consente l'importazione del tabellone finale degli scrutini e la generazione automatica della certificazione finale delle competenze per ogni studente (valorizzando in automatico i livelli delle competenze valutate con l'attività in aula ed aggregandole a quelle valutate con le prove di realtà).
+            </p>
+          </div>
+          <div class="feature-media">
+            <img alt="Importazione voti scrutinio e certificazione finale competenze" class="zoomable-image" src="images/scrutini.jpg" onclick="openLightbox(this)">
           </div>
         </div>
 
@@ -392,6 +406,40 @@
         });
       }
     });
+
+    // Lightbox Logic
+    function openLightbox(imgElement) {
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const captionText = document.getElementById('lightbox-caption');
+      
+      lightboxImg.src = imgElement.src;
+      lightboxImg.alt = imgElement.alt;
+      captionText.textContent = imgElement.alt;
+      
+      lightbox.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling background
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('image-lightbox');
+      lightbox.classList.remove('show');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Add escape key to close lightbox
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
   </script>
+
+  <!-- Lightbox Modal -->
+  <div id="image-lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="Zoomed screenshot" onclick="event.stopPropagation();">
+    <div id="lightbox-caption"></div>
+  </div>
 </body>
 </html>

@@ -118,12 +118,30 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      cursor: pointer;
     }
 
     .user-row:hover {
       border-color: var(--color-primary);
       box-shadow: var(--soft-shadow);
+    }
+
+    .user-row.selected {
+      border-color: var(--color-primary);
+      background-color: rgba(26, 115, 232, 0.04);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .user-row .check-icon {
+      color: var(--color-primary);
+      margin-left: 8px;
+      font-variation-settings: 'FILL' 1;
+      display: none;
+    }
+
+    .user-row.selected .check-icon {
+      display: inline-block;
     }
 
     .user-details {
@@ -241,53 +259,71 @@
       <h2 class="users-title">Seleziona un Profilo Utente</h2>
       
       <!-- User 1 -->
-      <div class="user-row">
+      <div class="user-row" onclick="selectProfile(this, 'andrea.rinaldi@elia-demo.it', 'Docente coordinatore (I periodo)')">
         <div class="user-details">
           <span class="user-email">andrea.rinaldi@elia-demo.it</span>
           <span class="user-role">Docente coordinatore (I periodo)</span>
         </div>
-        <button class="btn-copy" onclick="copyText('andrea.rinaldi@elia-demo.it', 'Email Andrea Rinaldi copiata!')" title="Copia email">
-          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-copy" onclick="event.stopPropagation(); copyText('andrea.rinaldi@elia-demo.it', 'Email Andrea Rinaldi copiata!')" title="Copia email">
+            <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+          </button>
+          <span class="material-symbols-outlined check-icon" style="font-size: 20px;">check_circle</span>
+        </div>
       </div>
 
       <!-- User 2 -->
-      <div class="user-row">
+      <div class="user-row" onclick="selectProfile(this, 'cristina.fontana@elia-demo.it', 'Docente standard (II periodo)')">
         <div class="user-details">
           <span class="user-email">cristina.fontana@elia-demo.it</span>
           <span class="user-role">Docente standard (II periodo)</span>
         </div>
-        <button class="btn-copy" onclick="copyText('cristina.fontana@elia-demo.it', 'Email Cristina Fontana copiata!')" title="Copia email">
-          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-copy" onclick="event.stopPropagation(); copyText('cristina.fontana@elia-demo.it', 'Email Cristina Fontana copiata!')" title="Copia email">
+            <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+          </button>
+          <span class="material-symbols-outlined check-icon" style="font-size: 20px;">check_circle</span>
+        </div>
       </div>
 
       <!-- User 3 -->
-      <div class="user-row">
+      <div class="user-row" onclick="selectProfile(this, 'roberto.moretti@elia-demo.it', 'Utente tecnico (coordinatore III periodo)')">
         <div class="user-details">
           <span class="user-email">roberto.moretti@elia-demo.it</span>
           <span class="user-role">Utente tecnico (coordinatore III periodo)</span>
         </div>
-        <button class="btn-copy" onclick="copyText('roberto.moretti@elia-demo.it', 'Email Roberto Moretti copiata!')" title="Copia email">
-          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-copy" onclick="event.stopPropagation(); copyText('roberto.moretti@elia-demo.it', 'Email Roberto Moretti copiata!')" title="Copia email">
+            <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+          </button>
+          <span class="material-symbols-outlined check-icon" style="font-size: 20px;">check_circle</span>
+        </div>
       </div>
 
       <!-- User 4 -->
-      <div class="user-row">
+      <div class="user-row" onclick="selectProfile(this, 'teresa.salvatore@elia-demo.it', 'Docente responsabile serale / coordinatore')">
         <div class="user-details">
           <span class="user-email">teresa.salvatore@elia-demo.it</span>
           <span class="user-role">Docente responsabile serale / coordinatore</span>
         </div>
-        <button class="btn-copy" onclick="copyText('teresa.salvatore@elia-demo.it', 'Email Teresa Salvatore copiata!')" title="Copia email">
-          <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
-        </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-copy" onclick="event.stopPropagation(); copyText('teresa.salvatore@elia-demo.it', 'Email Teresa Salvatore copiata!')" title="Copia email">
+            <span class="material-symbols-outlined" style="font-size: 18px;">content_copy</span>
+          </button>
+          <span class="material-symbols-outlined check-icon" style="font-size: 20px;">check_circle</span>
+        </div>
       </div>
+    </div>
+
+    <!-- Selected Profile Badge -->
+    <div class="selected-profile-badge" id="selected-profile-badge" style="display: none; justify-content: center; align-items: center; gap: 8px; background-color: var(--color-surface-container-low); border: 1px solid var(--color-outline-variant); padding: 12px 16px; border-radius: var(--radius-lg); font-size: 14px; font-weight: 500; color: var(--color-on-surface-variant); text-align: center; margin-top: -8px;">
+      <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-primary); font-variation-settings: 'FILL' 1;">account_circle</span>
+      <span>Profilo selezionato: <strong id="selected-profile-name" style="color: var(--color-on-surface); font-family: monospace;">Nessuno</strong></span>
     </div>
 
     <!-- Action Link -->
     <div class="btn-action-wrapper">
-      <a href="https://gestione-serale.vercel.app/login" target="_blank" class="btn btn-primary btn-go">
+      <a href="https://gestione-serale.vercel.app/login" target="_blank" class="btn btn-primary btn-go" id="btn-go-live">
         <span>Accedi all'Applicazione Live</span>
         <span class="material-symbols-outlined" style="font-size: 20px;">open_in_new</span>
       </a>
@@ -314,6 +350,48 @@
         toast.classList.remove('show');
       }, 2500);
     }
+
+    function selectProfile(element, email, role) {
+      // Remove selected class from all rows
+      document.querySelectorAll('.user-row').forEach(row => {
+        row.classList.remove('selected');
+      });
+
+      // Add selected class to the clicked row
+      element.classList.add('selected');
+
+      // Detect environment and update URL of the login button
+      let baseUrl = "https://gestione-serale.vercel.app/login";
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:') {
+        baseUrl = "http://localhost:5173/login";
+      }
+      const schoolCode = "ENIS000000";
+      const password = "Utente@1";
+      const newUrl = `${baseUrl}?email=${encodeURIComponent(email)}&username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&schoolCode=${encodeURIComponent(schoolCode)}&school_code=${encodeURIComponent(schoolCode)}`;
+      document.getElementById('btn-go-live').href = newUrl;
+
+      // Update the badge
+      const badge = document.getElementById('selected-profile-badge');
+      const nameSpan = document.getElementById('selected-profile-name');
+      nameSpan.textContent = `${email} (${role})`;
+      badge.style.display = 'flex';
+
+      // Copy email to clipboard automatically and show a friendly toast
+      navigator.clipboard.writeText(email).then(() => {
+        showToast(`Profilo selezionato e email copiata!`);
+      }).catch(err => {
+        console.error('Errore nella copia: ', err);
+        showToast('Profilo selezionato!');
+      });
+    }
+
+    // Auto-select the first profile on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const firstRow = document.querySelector('.user-row');
+      if (firstRow) {
+        firstRow.click();
+      }
+    });
   </script>
 </body>
 </html>
