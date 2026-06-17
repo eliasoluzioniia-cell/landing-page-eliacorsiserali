@@ -96,16 +96,22 @@
 
     <!-- 3. Idea Video Section -->
     <section class="section" id="video-appunto">
-      <div class="container animate-on-scroll">
-        <div class="section-header">
+      <div class="container empathy-grid animate-on-scroll">
+        <div class="empathy-content">
           <span class="badge badge-tertiary text-label-md">Dall'Appunto al Codice</span>
-          <h2 class="text-headline-lg" style="margin-top: 12px;">Dall'appunto alla piattaforma: la nascita con l'IA</h2>
+          <h2 class="text-headline-lg">Dall'appunto alla piattaforma: la nascita con l'IA</h2>
           <p class="text-body-lg">
             Guarda come un semplice appunto scritto a mano su carta da un docente si è trasformato, grazie all'intelligenza artificiale, in una suite gestionale completa e funzionante per l'istruzione degli adulti.
           </p>
+          <div class="empathy-divider"></div>
         </div>
-        <div class="video-section-wrapper">
-          <iframe src="https://www.youtube-nocookie.com/embed/yHqKCf31kmc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="hero-media float-screenshot" id="idea-video-container" style="margin: 0; width: 100%;">
+          <img alt="Copertina Video Nascita con IA" src="https://img.youtube.com/vi/yHqKCf31kmc/maxresdefault.jpg">
+          <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+            <button class="play-button" aria-label="Riproduci video nascita con IA" id="btn-idea-play">
+              <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1; font-size: 36px;">play_arrow</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -416,6 +422,21 @@
           } else {
             videoContainer.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/LQIYkV9IyZg?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
             videoContainer.classList.remove('float-screenshot'); // Stop floating animation during playback
+          }
+        });
+      }
+
+      // YouTube Video Playback Handler - Video Appunto/IA
+      const playBtnIdea = document.getElementById('btn-idea-play');
+      const videoContainerIdea = document.getElementById('idea-video-container');
+      if (playBtnIdea && videoContainerIdea) {
+        playBtnIdea.addEventListener('click', () => {
+          if (window.location.protocol === 'file:') {
+            // Fallback per protocollo file:// locale: apre il video direttamente su YouTube per prevenire l'Errore 153
+            window.open('https://youtu.be/yHqKCf31kmc', '_blank');
+          } else {
+            videoContainerIdea.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/yHqKCf31kmc?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
+            videoContainerIdea.classList.remove('float-screenshot'); // Stop floating animation during playback
           }
         });
       }
