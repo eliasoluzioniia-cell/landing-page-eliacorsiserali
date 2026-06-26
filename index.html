@@ -116,6 +116,28 @@
       </div>
     </section>
 
+    <!-- 3.5 Coordinamento Live Video Section -->
+    <section class="section" id="video-coordinamento">
+      <div class="container empathy-grid animate-on-scroll">
+        <div class="hero-media float-screenshot" id="coordinamento-video-container" style="margin: 0; width: 100%;">
+          <img alt="Copertina Video Coordinamento Live" src="https://img.youtube.com/vi/NqZQXdBAWnY/maxresdefault.jpg">
+          <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+            <button class="play-button" aria-label="Riproduci video coordinamento live" id="btn-coordinamento-play">
+              <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1; font-size: 36px;">play_arrow</span>
+            </button>
+          </div>
+        </div>
+        <div class="empathy-content">
+          <span class="badge badge-primary text-label-md">Coordinamento Live</span>
+          <h2 class="text-headline-lg">Gestione assenze, orario e comunicazione</h2>
+          <p class="text-body-lg">
+            Il nostro sistema avvicina l'ufficio personale alla gestione del serale migliorando la comunicazione e la gestione delle sostituzioni. Inoltre il nostro sistema elabora un orario settimanale pubblico per visualizzare le modifiche all'orario e include un sistema di chat interno per classe e di condivisione documenti.
+          </p>
+          <div class="empathy-divider"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- 4. Alternating Detail Sections -->
     <section class="section" id="moduli">
       <div class="container feature-detail-grid">
@@ -148,25 +170,8 @@
           </div>
         </div>
 
-        <!-- Module 3: Gestione assenze, orario e comunicazione -->
+        <!-- Module 3: Gestione PFI e Curricolo (Invertito per alternanza) -->
         <div class="feature-detail-item animate-on-scroll">
-          <div class="feature-info">
-            <span class="badge badge-primary text-label-md">Coordinamento Live</span>
-            <h3 class="text-headline-md">Gestione assenze, orario e comunicazione</h3>
-            <p class="text-body-lg">
-              Il nostro sistema avvicina l'ufficio personale alla gestione del serale migliorando la comunicazione e la gestione delle sostituzioni. Inoltre il nostro sistema elabora un orario settimanale pubblico per visualizzare le modifiche all'orario e include un sistema di chat interno per classe e di condivisione documenti.
-            </p>
-          </div>
-          <div class="feature-media">
-            <img alt="Registro Certificati Medici" class="zoomable-image" src="images/assenze.jpg" onclick="openLightbox(this)">
-          </div>
-        </div>
-
-        <!-- Module 4: Gestione PFI e Curricolo -->
-        <div class="feature-detail-item animate-on-scroll">
-          <div class="feature-media">
-            <img alt="Dashboard Analisi Visiva Studente" class="zoomable-image" src="images/curriculo.jpg" onclick="openLightbox(this)">
-          </div>
           <div class="feature-info">
             <span class="badge badge-secondary text-label-md">PFI intelligente</span>
             <h3 class="text-headline-md">Gestione PFI e Curricolo</h3>
@@ -174,19 +179,22 @@
               Il nostro sistema permette il caricamento semplificato del Curricolo e la gestione e stampa dei PFI per gli studenti.
             </p>
           </div>
+          <div class="feature-media">
+            <img alt="Dashboard Analisi Visiva Studente" class="zoomable-image" src="images/curriculo.jpg" onclick="openLightbox(this)">
+          </div>
         </div>
 
-        <!-- Module 5: Importazione voti scrutinio e certificazione finale competenze -->
+        <!-- Module 4: Importazione voti scrutinio e certificazione finale competenze (Invertito per alternanza) -->
         <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-media">
+            <img alt="Importazione voti scrutinio e certificazione finale competenze" class="zoomable-image" src="images/scrutini.jpg" onclick="openLightbox(this)">
+          </div>
           <div class="feature-info">
             <span class="badge badge-tertiary text-label-md">Scrutini e Certificati</span>
             <h3 class="text-headline-md">Importazione voti scrutinio e certificazione finale competenze</h3>
             <p class="text-body-lg">
               Il nostro sistema consente l'importazione del tabellone finale degli scrutini e la generazione automatica della certificazione finale delle competenze per ogni studente (valorizzando in automatico i livelli delle competenze valutate con l'attività in aula ed aggregandole a quelle valutate con le prove di realtà).
             </p>
-          </div>
-          <div class="feature-media">
-            <img alt="Importazione voti scrutinio e certificazione finale competenze" class="zoomable-image" src="images/scrutini.jpg" onclick="openLightbox(this)">
           </div>
         </div>
 
@@ -437,6 +445,21 @@
           } else {
             videoContainerIdea.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/yHqKCf31kmc?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
             videoContainerIdea.classList.remove('float-screenshot'); // Stop floating animation during playback
+          }
+        });
+      }
+
+      // YouTube Video Playback Handler - Video Coordinamento Live
+      const playBtnCoordinamento = document.getElementById('btn-coordinamento-play');
+      const videoContainerCoordinamento = document.getElementById('coordinamento-video-container');
+      if (playBtnCoordinamento && videoContainerCoordinamento) {
+        playBtnCoordinamento.addEventListener('click', () => {
+          if (window.location.protocol === 'file:') {
+            // Fallback per protocollo file:// locale: apre il video direttamente su YouTube per prevenire l'Errore 153
+            window.open('https://youtu.be/NqZQXdBAWnY', '_blank');
+          } else {
+            videoContainerCoordinamento.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/NqZQXdBAWnY?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
+            videoContainerCoordinamento.classList.remove('float-screenshot'); // Stop floating animation during playback
           }
         });
       }
