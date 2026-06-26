@@ -151,8 +151,13 @@
               Valutazione rapida e decentralizzata per i docenti. Inserisci i risultati delle prove di realtà in pochi clic. Stampa del tabellone prove di realtà ed generazione automatica della scheda valutazione studente per le prove di realtà.
             </p>
           </div>
-          <div class="feature-media">
-            <img alt="Registro Prove di Realtà" class="zoomable-image" src="images/prove.jpg" onclick="openLightbox(this)">
+          <div class="feature-media float-screenshot" id="prove-video-container" style="position: relative; aspect-ratio: 16/9; overflow: hidden; padding: 0; border: 4px solid var(--color-white); cursor: pointer;">
+            <img alt="Copertina Video Registro Prove di Realtà" src="https://img.youtube.com/vi/srwgneyFVZ0/maxresdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+              <button class="play-button" aria-label="Riproduci video Registro Prove di Realtà" id="btn-prove-play">
+                <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1; font-size: 36px;">play_arrow</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -486,6 +491,21 @@
           } else {
             videoContainerPresenze.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/nWcezXvPkJA?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
             videoContainerPresenze.classList.remove('float-screenshot'); // Stop floating animation during playback
+          }
+        });
+      }
+
+      // YouTube Video Playback Handler - Video Registro Prove di Realtà
+      const playBtnProve = document.getElementById('btn-prove-play');
+      const videoContainerProve = document.getElementById('prove-video-container');
+      if (playBtnProve && videoContainerProve) {
+        playBtnProve.addEventListener('click', () => {
+          if (window.location.protocol === 'file:') {
+            // Fallback per protocollo file:// locale: apre il video direttamente su YouTube per prevenire l'Errore 153
+            window.open('https://youtu.be/srwgneyFVZ0', '_blank');
+          } else {
+            videoContainerProve.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/srwgneyFVZ0?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
+            videoContainerProve.classList.remove('float-screenshot'); // Stop floating animation during playback
           }
         });
       }
