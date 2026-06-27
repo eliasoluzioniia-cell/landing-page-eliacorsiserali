@@ -726,10 +726,42 @@ h1, h2, h3, h4, h5, h6 {
 
 .cta-box h2 {
   color: var(--color-on-primary);
+  margin-bottom: 8px;
 }
 
 .cta-box p {
   opacity: 0.9;
+}
+
+.cta-description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--color-white);
+  opacity: 0.95;
+}
+
+.cta-bullet {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.cta-bullet span.material-symbols-outlined {
+  color: var(--color-white);
+  font-size: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cta-bullet strong {
+  color: var(--color-white);
+  font-weight: 600;
 }
 
 .cta-actions {
