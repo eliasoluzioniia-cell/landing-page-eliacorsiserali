@@ -320,6 +320,120 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.hero-features {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+@media (max-width: 992px) {
+  .hero-features {
+    align-self: center;
+    max-width: 500px;
+  }
+}
+
+.hero-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+  text-align: left;
+}
+
+.hero-features li span.material-symbols-outlined {
+  color: var(--color-primary);
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+/* MacOS Browser Mockup */
+.browser-mockup {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--color-outline-variant);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 100%;
+}
+
+.hero-browser-link:hover .browser-mockup {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.browser-header {
+  height: 36px;
+  background-color: var(--color-surface-container);
+  border-bottom: 1px solid var(--color-outline-variant);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  position: relative;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red {
+  background-color: #ff5f56;
+}
+
+.dot-yellow {
+  background-color: #ffbd2e;
+}
+
+.dot-green {
+  background-color: #27c93f;
+}
+
+.browser-address-bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline-variant);
+  border-radius: 6px;
+  padding: 2px 24px;
+  font-size: 11px;
+  color: var(--color-outline);
+  text-align: center;
+  font-family: Inter, sans-serif;
+  white-space: nowrap;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.browser-body {
+  line-height: 0;
+  background-color: #ffffff;
+}
+
+.browser-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Restored .hero-media styles used in detail/video sections */
 .hero-media {
   position: relative;
   background-color: rgba(255, 255, 255, 0.6);
