@@ -788,16 +788,6 @@
           }
         });
       });
-
-      // Open first accordion item by default
-      const firstHeader = document.querySelector('.accordion-header');
-      if (firstHeader) {
-        const item = firstHeader.parentElement;
-        const content = firstHeader.nextElementSibling;
-        item.classList.add('active');
-        content.style.maxHeight = content.scrollHeight + 'px';
-        firstHeader.setAttribute('aria-expanded', 'true');
-      }
     });
 
     // Lightbox Logic
