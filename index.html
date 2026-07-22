@@ -81,12 +81,16 @@
             <span class="material-symbols-outlined">check_circle</span>
             <span>Coordinamento live delle sostituzioni docenti</span>
           </li>
+          <li>
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Sviluppo software condiviso</span>
+          </li>
         </ul>
         <div class="hero-actions">
           <a href="demo.html" target="_blank" class="btn btn-primary btn-lg" id="btn-hero-demo">Accedi alla Demo Live</a>
         </div>
       </div>
-      <a href="demo.html" target="_blank" class="hero-browser-link" id="hero-demo-container" style="display: block; text-decoration: none;">
+      <a href="demo.html" target="_blank" class="hero-browser-link" id="hero-demo-container">
         <div class="browser-mockup">
           <div class="browser-header">
             <div class="browser-dots">
@@ -96,8 +100,42 @@
             </div>
             <div class="browser-address-bar">elia-serali.scuola.it</div>
           </div>
-          <div class="browser-body">
-            <img src="immagine-applicazione.jpg" alt="Piattaforma Gestione Serali - Panoramica">
+          <div class="browser-body" style="position: relative; overflow: hidden; aspect-ratio: 16/10; background: var(--color-surface-container);">
+            
+            <!-- Intro Overlay Normal -->
+            <div id="hero-intro" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--color-surface); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 1; transition: opacity 1.5s ease;">
+              
+              <!-- Brush Stroke SVG -->
+              <svg id="brush-stroke-svg" viewBox="0 0 1000 625" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0; transition: opacity 0.5s ease;">
+                <defs>
+                  <filter id="brush-texture" x="-20%" y="-20%" width="140%" height="140%">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="noise" />
+                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                    <feGaussianBlur in="displaced" stdDeviation="3" result="blurred" />
+                    <feComposite in="SourceGraphic" in2="blurred" operator="over" />
+                  </filter>
+                </defs>
+                <path id="brush-path" d="M -100 350 Q 200 50, 450 350 T 950 200 T 1150 400" fill="none" stroke="#29b6f6" stroke-width="70" stroke-linecap="round" filter="url(#brush-texture)" style="stroke-dasharray: 2000; stroke-dashoffset: 2000; transition: stroke-dashoffset 2s ease-in-out;" />
+                
+                <text font-family="Inter, sans-serif" font-size="42" font-weight="700" fill="#ffffff" letter-spacing="1">
+                  <textPath href="#brush-path" startOffset="-20%" text-anchor="middle" dominant-baseline="middle">
+                    sviluppo ia
+                    <animate attributeName="startOffset" from="-20%" to="70%" begin="indefinite" dur="2.8s" fill="freeze" id="text-anim" calcMode="spline" keySplines="0.4 0 0.2 1" keyTimes="0; 1" />
+                  </textPath>
+                </text>
+              </svg>
+
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 20px; z-index: 2;">
+                 <img src="logo.png" id="hero-intro-logo" alt="Logo Elia" style="width: 100%; max-width: 320px; height: auto; object-fit: contain; mix-blend-mode: multiply;">
+                 <h2 style="font-size: 2.5rem; margin: 0; color: var(--color-primary); font-weight: 700; letter-spacing: -0.5px; text-align: center;">Elia Corsi Serali</h2>
+              </div>
+            </div>
+
+            <video id="hero-video" muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity 0.8s ease;">
+              <source src="video home elia corsi serali.mp4" type="video/mp4">
+              Il tuo browser non supporta i video.
+            </video>
+            <img id="hero-static-img" src="immagine-applicazione.jpg" alt="Piattaforma Gestione Serali - Panoramica" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s ease; pointer-events: none;">
           </div>
         </div>
       </a>
@@ -221,6 +259,45 @@
                 <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1; font-size: 36px;">play_arrow</span>
               </button>
             </div>
+          </div>
+        </div>
+
+        <!-- Module 4: Gestione Ticket e Community per lo Sviluppo Condiviso -->
+        <div class="feature-detail-item animate-on-scroll">
+          <div class="feature-media float-screenshot" id="ticket-video-container" style="position: relative; aspect-ratio: 16/9; overflow: hidden; padding: 0; border: 4px solid var(--color-white); cursor: pointer;">
+            <img alt="Copertina Video Gestione Ticket e Community" src="https://img.youtube.com/vi/4SBLWk4Igfk/maxresdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+              <button class="play-button" aria-label="Riproduci video Gestione Ticket e Community" id="btn-ticket-play">
+                <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1; font-size: 36px;">play_arrow</span>
+              </button>
+            </div>
+          </div>
+          <div class="feature-info">
+            <span class="badge badge-tertiary text-label-md">Sviluppo Condiviso</span>
+            <h3 class="text-headline-md">Gestione Ticket e Community per lo Sviluppo Condiviso</h3>
+            <ul class="feature-info-list">
+              <li>
+                <span class="material-symbols-outlined">support_agent</span>
+                <div>
+                  <strong>Helpdesk Integrato e Tracciamento Ticket:</strong>
+                  Ogni scuola dispone di un modulo interno per l'apertura rapida di segnalazioni, richieste di supporto o quesiti normativi/tecnici.
+                </div>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">diversity_3</span>
+                <div>
+                  <strong>Proponi e Vota le Nuove Funzionalità (Community Hub):</strong>
+                  Hai un'idea per velocizzare un processo burocratico? Attraverso lo spazio Community, docenti e coordinatori possono proporre nuove migliorie e votare le idee espresse dagli altri istituti pilota.
+                </div>
+              </li>
+              <li>
+                <span class="material-symbols-outlined">deployed_code</span>
+                <div>
+                  <strong>Ciclo di Sviluppo Agile e Trasparente:</strong>
+                  Le funzionalità più votate dalla community e i ticket condivisi entrano direttamente nella roadmap di sviluppo prioritaria. Gli aggiornamenti vengono rilasciati periodicamente senza costi aggiuntivi per le scuole aderenti.
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -437,6 +514,44 @@
                     <div>
                       <strong>Clonazione Rapida:</strong>
                       Puoi duplicare o clonare intere configurazioni strutturali per l'anno corrente, ripristinando in automatico le associazioni delle cattedre e i ruoli chiave (come i Docenti Coordinatori) per essere pronti in pochissimi minuti.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="accordion-title-container">
+                <span class="material-symbols-outlined accordion-icon-main">diversity_3</span>
+                <span class="text-headline-sm">6. Gestione Ticket e Community per lo Sviluppo Condiviso</span>
+              </div>
+              <span class="material-symbols-outlined accordion-chevron">expand_more</span>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner text-body-lg">
+                <div class="guide-details-grid">
+                  <div class="guide-detail-card">
+                    <span class="material-symbols-outlined">support_agent</span>
+                    <div>
+                      <strong>Helpdesk Integrato e Tracciamento Ticket:</strong>
+                      Ogni scuola dispone di un modulo interno per l'apertura rapida di segnalazioni, richieste di supporto o quesiti normativi/tecnici.
+                    </div>
+                  </div>
+                  <div class="guide-detail-card">
+                    <span class="material-symbols-outlined">forum</span>
+                    <div>
+                      <strong>Proponi e Vota le Nuove Funzionalità (Community Hub):</strong>
+                      Hai un'idea per velocizzare un processo burocratico? Attraverso lo spazio Community, docenti e coordinatori possono proporre nuove migliorie e votare le idee espresse dagli altri istituti pilota.
+                    </div>
+                  </div>
+                  <div class="guide-detail-card">
+                    <span class="material-symbols-outlined">deployed_code</span>
+                    <div>
+                      <strong>Ciclo di Sviluppo Agile e Trasparente:</strong>
+                      Le funzionalità più votate dalla community e i ticket condivisi entrano direttamente nella roadmap di sviluppo prioritaria. Gli aggiornamenti vengono rilasciati periodicamente senza costi aggiuntivi per le scuole aderenti.
                     </div>
                   </div>
                 </div>
@@ -758,6 +873,20 @@
           }
         });
       }
+      // YouTube Video Playback Handler - Video Gestione Ticket e Community
+      const playBtnTicket = document.getElementById('btn-ticket-play');
+      const videoContainerTicket = document.getElementById('ticket-video-container');
+      if (playBtnTicket && videoContainerTicket) {
+        playBtnTicket.addEventListener('click', () => {
+          if (window.location.protocol === 'file:') {
+            // Fallback per protocollo file:// locale: apre il video direttamente su YouTube per prevenire l'Errore 153
+            window.open('https://youtu.be/4SBLWk4Igfk', '_blank');
+          } else {
+            videoContainerTicket.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/4SBLWk4Igfk?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"></iframe>`;
+            videoContainerTicket.classList.remove('float-screenshot'); // Stop floating animation during playback
+          }
+        });
+      }
 
       // Accordion Logic
       const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -788,6 +917,74 @@
           }
         });
       });
+
+      // Hero 3D Animation & Video Handler (Ciclico)
+      const heroVideo = document.getElementById('hero-video');
+      const heroStaticImg = document.getElementById('hero-static-img');
+      const heroIntro = document.getElementById('hero-intro');
+      const browserMockup = document.querySelector('.browser-mockup');
+
+      if (heroVideo && browserMockup && heroIntro) {
+        let cycleTimeout;
+        const brushSvg = document.getElementById('brush-stroke-svg');
+        const brushPath = document.getElementById('brush-path');
+
+        const startCycle = () => {
+          // Fase 1: Flat, Logo Intro
+          browserMockup.classList.remove('tilt-3d');
+          heroIntro.style.opacity = '1';
+          heroStaticImg.style.opacity = '0';
+          heroVideo.style.opacity = '0';
+          heroVideo.currentTime = 0;
+          
+          if (brushSvg && brushPath) {
+            brushSvg.style.opacity = '0';
+            brushPath.style.strokeDashoffset = '2000';
+            brushPath.style.transition = 'none'; // reset without animation
+          }
+          
+          // Fase 2: Dopo 1.5s, inizia la pennellata
+          cycleTimeout = setTimeout(() => {
+            if (brushSvg && brushPath) {
+              brushSvg.style.opacity = '0.8'; // mostra svg
+              // Forza il reflow
+              void brushPath.offsetWidth; 
+              brushPath.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)';
+              brushPath.style.strokeDashoffset = '0'; // disegna il tratto
+              
+              const textAnim = document.getElementById('text-anim');
+              if (textAnim && typeof textAnim.beginElement === 'function') {
+                textAnim.beginElement();
+              }
+            }
+
+            // Fase 3: A 3.5s, sfuma al video (la pennellata e il logo spariscono insieme al div intro)
+            setTimeout(() => {
+              heroIntro.style.opacity = '0';
+              heroVideo.style.opacity = '1';
+              const playPromise = heroVideo.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(error => console.log('Autoplay prevenuto:', error));
+              }
+            }, 2000); // 2s dopo l'inizio della pennellata
+          }, 1500);
+        };
+
+        // Fase 3: A fine video, inclinazione 3D verso l'immagine
+        heroVideo.addEventListener('ended', () => {
+          browserMockup.classList.add('tilt-3d');
+          heroStaticImg.style.opacity = '1';
+          heroVideo.style.opacity = '0';
+          
+          // Fase 4: Attendi 4s e poi fai ripartire il ciclo
+          cycleTimeout = setTimeout(() => {
+             startCycle();
+          }, 4000);
+        });
+
+        // Avvio iniziale del ciclo
+        startCycle();
+      }
     });
 
     // Lightbox Logic
